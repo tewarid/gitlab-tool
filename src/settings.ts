@@ -1,5 +1,5 @@
-import * as ko from "knockout";
-import { ViewModelBase } from "./ViewModelBase";
+import * as ko from 'knockout';
+import { ViewModelBase } from './ViewModelBase';
 
 class SettingsViewModel extends ViewModelBase {
     public host: ko.Observable<string>;
@@ -8,11 +8,11 @@ class SettingsViewModel extends ViewModelBase {
 
     constructor() {
         super();
-        this.typeName = "SettingsViewModel";
+        this.typeName = 'SettingsViewModel';
         ViewModelBase.settings = this;
         const saved = this.read();
-        this.host = ko.observable(saved.host || "https://gitlab.com");
-        this.token = ko.observable(saved.token || "");
+        this.host = ko.observable(saved.host || 'https://gitlab.com');
+        this.token = ko.observable(saved.token || '');
         this.busy = ko.observable(false);
     }
 }

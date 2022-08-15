@@ -1,6 +1,6 @@
-import {Gitlab} from "@gitbeaker/browser";
-import * as ko from "knockout";
-import { ViewModelBase } from "./ViewModelBase";
+import {Gitlab} from '@gitbeaker/browser';
+import * as ko from 'knockout';
+import { ViewModelBase } from './ViewModelBase';
 
 class ProjectsViewModel extends ViewModelBase {
     public projects: ko.ObservableArray<any>;
@@ -12,7 +12,7 @@ class ProjectsViewModel extends ViewModelBase {
 
     constructor() {
         super();
-        this.typeName = "ProjectsViewModel";
+        this.typeName = 'ProjectsViewModel';
         const saved = this.read();
         this.projects = ko.observableArray(saved.projects);
         this.milestones = ko.observableArray(saved.milestones);
@@ -32,8 +32,7 @@ class ProjectsViewModel extends ViewModelBase {
         });
         api.Projects.all({
             search: this.search(),
-        })
-        .then((projects: any) => {
+        }).then((projects: any) => {
             this.projects.removeAll();
             this.milestones.removeAll();
             const promises: any = [];
@@ -51,25 +50,25 @@ class ProjectsViewModel extends ViewModelBase {
                     });
                 });
             });
-            Promise.all(promises).then((values) => {
+            Promise.all(promises).then(() => {
                 this.save();
                 this.busy(false);
-            }, (reason) => {
+            }, () => {
                 this.save();
                 this.busy(false);
             });
-        }, (reason) => {
+        }, () => {
             // do nothing
         });
     }
 
-    public viewProjects(e: HTMLLinkElement) {
+    public viewProjects() {
         this.projectsVisible(true);
         this.milestonesVisible(false);
         this.save();
     }
 
-    public viewMilestones(e: HTMLLinkElement) {
+    public viewMilestones() {
         this.projectsVisible(false);
         this.milestonesVisible(true);
         this.save();

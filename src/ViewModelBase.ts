@@ -1,9 +1,9 @@
-import * as ko from "knockout";
+import * as ko from 'knockout';
 
 export class ViewModelBase {
     protected static settings: any;
-    protected static prefix: string = "ko";
-    protected typeName: string = "ViewModelBase";
+    protected static prefix = 'ko';
+    protected typeName = 'ViewModelBase';
 
     protected read(): any {
         try {
@@ -15,6 +15,6 @@ export class ViewModelBase {
 
     protected save(replacer: any = null) {
         window.localStorage.setItem(`${ViewModelBase.prefix}.${this.typeName}`,
-        ko.toJSON(this, replacer));
+            ko.toJSON(this, replacer));
     }
 }
